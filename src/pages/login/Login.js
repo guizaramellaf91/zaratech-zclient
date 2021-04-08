@@ -11,7 +11,7 @@ const Login = () => {
         api.post('usuario/auth/', values).then(resp => {
             const { data } = resp;
             if (data) {
-                console.log(resp);
+                console.log('Usuário autenticado!');
                 localStorage.setItem('token', data);
                 history.push('/');
             }
