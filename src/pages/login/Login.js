@@ -1,26 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { ErrorMessage, Formik, Form, Field } from 'formik'
-import * as yup from 'yup'
-import api from '../../services/api'
-import { history } from '../../history'
-import './Login.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ErrorMessage, Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
+import api from '../../services/api';
+import { history } from '../../history';
+import './Login.css';
 
-const Login = () => {
+const Login = (err) => {
     const handleSubmit = values => {
         api.post('auth', values).then(resp => {
-            const { data } = resp
+            const { data } = resp;
             if (data) {
-                console.log(resp)
-                localStorage.setItem('token', data)
-                history.push('/')
-            } 
-        })
-    }
+                console.log(resp);
+                localStorage.setItem('token', data);
+                history.push('/');
+            } else {
+                console.log('Nenhum retorno da API!');
+                history.push('/login');
+            }
+        });
+    };
     const validations = yup.object().shape({
-        email: yup.string().email().required(),
-        password: yup.string().min(8).required()
-    })
+        login: yup.string().required(),
+        senha: yup.string().min(3).required()
+    });
     return (
         <>
             <h1>ZClient | Login</h1>
@@ -33,26 +36,26 @@ const Login = () => {
                 <Form className="Login">
                     <div className="Login-Group">
                         <Field
-                            name="email"
+                            name="login"
                             value={this}
                             className="Login-Field"
                         />
                         <ErrorMessage
                             component="span"
-                            name="email"
+                            name="login"
                             className="Login-Error"
                         />
                     </div>
                     <div className="Login-Group">
                         <Field
                             type="password"
-                            name="password"
+                            name="senha"
                             value={this}
                             className="Login-Field"
                         />
                         <ErrorMessage
                             component="span"
-                            name="password"
+                            name="senha"
                             className="Login-Error"
                         />
                     </div>
@@ -61,7 +64,7 @@ const Login = () => {
                 </Form>
             </Formik>
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
