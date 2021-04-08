@@ -1,10 +1,11 @@
 import React from 'react'
+import Keys from '../../components/Keys';
 import { history } from '../../history'
 import './Home.css'
 
 const Home = () => {
     const deslogarUser = () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem(Keys.jsonkey);
         history.push('/')
     }
     return (

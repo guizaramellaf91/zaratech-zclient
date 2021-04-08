@@ -1,4 +1,5 @@
 import React from 'react';
+import Keys from '../../components/Keys';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import api from '../../services/api';
@@ -12,7 +13,7 @@ const Login = () => {
             const { data } = resp;
             if (data) {
                 console.log('Usuário autenticado!');
-                localStorage.setItem('token', data);
+                localStorage.setItem(Keys.jsonkey, data);
                 history.push('/');
             }
         });
