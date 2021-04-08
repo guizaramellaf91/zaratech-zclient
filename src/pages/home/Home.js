@@ -4,12 +4,12 @@ import './Home.css'
 
 const Home = () => {
     const deslogarUser = () => {
-        localStorage.removeItem('token_rjtools')
+        localStorage.removeItem('token')
         history.push('/')
     }
     return (
         <>
-            <h1>RJTools-e | Tela Principal</h1>
+            <h1>ZClient | Tela Principal</h1>
             <p>Seja bem vindo Administrador!</p>
             <button onClick={deslogarUser} className="Login-Btn">Deslogar</button>
         </>

@@ -9,7 +9,7 @@ import '../login/Login.css'
 
 const Register = () => {
     const handleSubmit = values => {
-        api.post('user', values).then(resp => {
+        api.post('usuario/', values).then(resp => {
             const { data } = resp
             if (data) {
                 console.log('cadastro realizado com sucesso!')
@@ -19,12 +19,12 @@ const Register = () => {
     }
 
     const validations = yup.object().shape({
-        email: yup.string().email().required(),
-        password: yup.string().min(8).required()
+        login: yup.string().required(),
+        senha: yup.string().min(3).required()
     })
     return (
         <>
-            <h1>RJTools-e | Registre-se</h1>
+            <h1>ZClient | Registre-se</h1>
             <p>Preencha os campos para criar um novo usuário.</p>
             <Formik
                 initialValues={{}}
@@ -34,35 +34,22 @@ const Register = () => {
                 <Form className="Login">
                     <div className="Login-Group">
                         <Field
-                            name="firstName"
+                            name="nome"
                             value={this}
-                            placeholder="Digite o primeiro nome"
+                            placeholder="Digite o nome"
                             className="Login-Field"
                         />
                         <ErrorMessage
                             component="span"
-                            name="firstName"
-                            className="Login-Error"
-                        />
-                    </div>
-                    <div className="Login-Group">
-                        <Field
-                            name="lastName"
-                            value={this}
-                            placeholder="Digite o sobrenome"
-                            className="Login-Field"
-                        />
-                        <ErrorMessage
-                            component="span"
-                            name="lastName"
+                            name="nome"
                             className="Login-Error"
                         />
                     </div>
                     <div className="Login-Group">
                         <Field
                             name="email"
-                            value={this}
                             type="email"
+                            value={this}
                             placeholder="Digite o e-mail"
                             className="Login-Field"
                         />
@@ -74,14 +61,28 @@ const Register = () => {
                     </div>
                     <div className="Login-Group">
                         <Field
-                            name="password"
+                            name="login"
+                            value={this}
+                            placeholder="Digite o login"
+                            className="Login-Field"
+                        />
+                        <ErrorMessage
+                            component="span"
+                            name="login"
+                            className="Login-Error"
+                        />
+                    </div>
+                    <div className="Login-Group">
+                        <Field
+                            name="senha"
+                            type="password"
                             value={this}
                             placeholder="Digite a senha"
                             className="Login-Field"
                         />
                         <ErrorMessage
                             component="span"
-                            name="password"
+                            name="senha"
                             className="Login-Error"
                         />
                     </div>

@@ -6,9 +6,10 @@ import api from '../../services/api';
 import { history } from '../../history';
 import './Login.css';
 
-const Login = (err) => {
+const Login = () => {
+
     const handleSubmit = values => {
-        api.post('auth', values).then(resp => {
+        api.post('usuario/auth/', values).then(resp => {
             const { data } = resp;
             if (data) {
                 console.log(resp);
